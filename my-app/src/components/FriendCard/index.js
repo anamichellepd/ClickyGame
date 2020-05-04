@@ -1,6 +1,13 @@
 import React from "react";
 import "./style.css";
+import friends from "../../friends.json";
 
+//shuffle the images
+var shuffle = require("shuffle-array"),
+  collection = friends;
+shuffle(collection);
+
+console.log(collection);
 function FriendCard(props) {
   return (
     <div className="card">
