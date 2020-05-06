@@ -1,26 +1,34 @@
 import React from "react";
 import "./style.css";
 import friends from "../../friends.json";
-import shuffle from "shuffle-array";
+import Counter from "../Counter";
 
-function FriendCard(props) {
-  const shuffleArray = (friend) => {
+class FriendCard extends Counter {
+  //after the card is clicked, the array is shuffled.
+  //Pending: making the cards shuffle since only the array shuffles.
+  shuffleArray = (friend) => {
     for (let i = friends.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      console.log(friends[j].name);
     }
   };
-  const selectCard = () => <card {...true} />;
-  const cardClicked = () => {
-    shuffleArray, selectCard;
+  //On click, marking the card as selected
+  selectCard = () => <card {...true} />;
+
+  //function that gathers all of the functions that happen onClick
+
+  clickHandler = () => {
+    this.handleIncrement();
+    this.shuffleArray();
   };
-  return (
-    <div className="card" onClick={() => cardclicked()}>
-      <div className="img-container">
-        <img alt={props.name} src={props.image} />
+  render(props) {
+    return (
+      <div className="card" onClick={this.clickHandler}>
+        <div className="img-container">
+          <img alt={props.name} src={props.image} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FriendCard;
