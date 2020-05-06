@@ -1,35 +1,24 @@
 import React from "react";
 import "./style.css";
 import friends from "../../friends.json";
+import shuffle from "shuffle-array";
 
-//shuffle the images
-var shuffle = require("shuffle-array"),
-  collection = friends;
-shuffle(collection);
-
-console.log(collection);
 function FriendCard(props) {
+  const shuffleArray = (friend) => {
+    for (let i = friends.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      console.log(friends[j].name);
+    }
+  };
+  const selectCard = () => <card {...true} />;
+  const cardClicked = () => {
+    shuffleArray, selectCard;
+  };
   return (
-    <div className="card">
+    <div className="card" onClick={() => cardclicked()}>
       <div className="img-container">
         <img alt={props.name} src={props.image} />
       </div>
-      <div className="content">
-        <ul>
-          <li>
-            <strong>Name:</strong> {props.name}
-          </li>
-          <li>
-            <strong>Occupation:</strong> {props.occupation}
-          </li>
-          <li>
-            <strong>Location:</strong> {props.location}
-          </li>
-        </ul>
-      </div>
-      <span onClick={() => props.removeFriend(props.id)} className="remove">
-        𝘅
-      </span>
     </div>
   );
 }
